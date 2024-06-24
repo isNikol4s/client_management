@@ -1,11 +1,33 @@
+collection Person {
+  icon "person"
+  properties {
+    name str 
+    document str
+    email str
+    phone str
+  }
+  functions {
+    get @expose
+    getAll @expose
+    insert @expose
+  }
+  presets {
+    crud
+  }
+}
+
 collection Pet {
   icon "dog"
   indexes {
     name
+    age
+    owner 
   }
   properties {
-    name str
-    type enum @values(["cavalo", "egua"])
+    name str  
+    type enum @values(["Mammal", "Bird", "Reptile", "Fish", "Invertebrate"])
+    age str 
+    owner []Person @inline
     picture File @accept(["image/*"])
   }
   functions {
@@ -18,20 +40,3 @@ collection Pet {
     crud
   } 
 }
-
-collection Person {
-  icon "person"
-  properties {
-    name str
-    pets []Pet
-  }
-  functions {
-    get @expose
-    getAll @expose
-    insert @expose
-  }
-  presets {
-    crud
-  }
-}
-

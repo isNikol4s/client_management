@@ -92,14 +92,14 @@ declare type MirrorDescriptions = {
       "name": {
         "type": "string"
       },
-      "pets": {
-        "type": "array",
-        "items": {
-          "$ref": "pet",
-          "indexes": [
-            "name"
-          ]
-        }
+      "document": {
+        "type": "string"
+      },
+      "email": {
+        "type": "string"
+      },
+      "phone": {
+        "type": "string"
       },
       "treatment": {
         "readOnly": true
@@ -153,9 +153,15 @@ declare type MirrorDescriptions = {
       },
       "type": {
         "enum": [
-          "cavalo",
-          "egua"
+          "Mammal",
+          "Bird",
+          "Reptile",
+          "Fish",
+          "Invertebrate"
         ]
+      },
+      "age": {
+        "type": "string"
       },
       "picture": {
         "$ref": "file",
@@ -188,7 +194,8 @@ declare type MirrorDescriptions = {
       "crud"
     ],
     "indexes": [
-      "name"
+      "name",
+      "age"
     ],
     "actions": {
       "ui:spawnAdd": {

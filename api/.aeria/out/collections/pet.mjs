@@ -1,3 +1,3 @@
 import { extendCollection,defineCollection,get,getAll,insert,upload } from "aeria"
-export const pet = defineCollection({description: {$id: "pet",properties: {name: {type: "string"},type: {enum: ["cavalo","egua"]},picture: {$ref: "file",accept: ["image/*"]}},icon: "dog",presets: ["crud"],indexes: ["name"]},functions: {get,getAll,insert,upload},exposedFunctions: {get: true,getAll: true,insert: true,upload: true}})
+export const pet = defineCollection({description: {$id: "pet",properties: {name: {type: "string"},type: {enum: ["Mammal","Bird","Reptile","Fish","Invertebrate"]},age: {type: "string"},owner: {type: "array",items: {$ref: "person"},inline: true},picture: {$ref: "file",accept: ["image/*"]}},icon: "dog",presets: ["crud"],indexes: ["name","age","owner"]},functions: {get,getAll,insert,upload},exposedFunctions: {get: true,getAll: true,insert: true,upload: true}})
 export const extendPetCollection = (collection) => extendCollection(pet,collection)
