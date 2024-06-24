@@ -1,0 +1,37 @@
+collection Pet {
+  icon "dog"
+  indexes {
+    name
+  }
+  properties {
+    name str
+    type enum @values(["cavalo", "egua"])
+    picture File @accept(["image/*"])
+  }
+  functions {
+    get @expose
+    getAll @expose
+    insert @expose
+    upload @expose
+  }
+  presets {
+    crud
+  } 
+}
+
+collection Person {
+  icon "person"
+  properties {
+    name str
+    pets []Pet
+  }
+  functions {
+    get @expose
+    getAll @expose
+    insert @expose
+  }
+  presets {
+    crud
+  }
+}
+
