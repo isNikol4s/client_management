@@ -123,6 +123,12 @@ declare type MirrorDescriptions = {
     "presets": [
       "crud"
     ],
+    "indexes": [
+      "name",
+      "document",
+      "email",
+      "phone"
+    ],
     "actions": {
       "ui:spawnAdd": {
         "label": "action.add",
@@ -163,6 +169,18 @@ declare type MirrorDescriptions = {
       "age": {
         "type": "string"
       },
+      "owner": {
+        "type": "array",
+        "items": {
+          "$ref": "person",
+          "indexes": [
+            "name",
+            "document",
+            "email",
+            "phone"
+          ]
+        }
+      },
       "picture": {
         "$ref": "file",
         "accept": [
@@ -195,7 +213,8 @@ declare type MirrorDescriptions = {
     ],
     "indexes": [
       "name",
-      "age"
+      "age",
+      "owner"
     ],
     "actions": {
       "ui:spawnAdd": {

@@ -1,5 +1,11 @@
 collection Person {
   icon "person"
+  indexes {
+    name
+    document
+    email
+    phone
+  }
   properties {
     name str 
     document str
@@ -21,13 +27,13 @@ collection Pet {
   indexes {
     name
     age
-    owner 
+    owner
   }
   properties {
     name str  
     type enum @values(["Mammal", "Bird", "Reptile", "Fish", "Invertebrate"])
     age str 
-    owner []Person @inline
+    owner []Person 
     picture File @accept(["image/*"])
   }
   functions {
