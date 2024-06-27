@@ -890,12 +890,9 @@ declare type MirrorRouter = {
       ]
     }
   },
-  "/test": {
-    "GET": null
-  },
   "/list/chekin": {
     "GET": {
-      "payload": {
+      "query": {
         "type": "object",
         "properties": {
           "document": {

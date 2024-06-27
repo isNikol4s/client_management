@@ -28,8 +28,8 @@ collection Geolocation {
   }
 }
 
-collection Person {
-  icon "person"
+  collection Person {
+    icon "person" 
   indexes {
     name
     email

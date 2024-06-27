@@ -8,20 +8,34 @@ definePage({
 aeria().describe
 import { ref } from 'vue';
 
-const cpf = ref<string>('');
-const submitMessage = await aeria().list.chekin.GET({
-  document: cpf.value
-});
+type Chekins = {
+  animal: {
+    name: string;
+  };
+    weigth: number;
+    temperature: number;
+    reason: string
+    created_at: Date;
+ }
 
-watch(cpf.value as any, function(value) {console.log(value);
-}) 
+const document =ref('');
+const chekins =ref<any>([])
+
+const searchChekins = async () => {
+  const {error,result} = await aeria().list.chekin.GET({
+    document: document.value
+  });
+  if (error) {
+    console.log('error');
+    return
+  }
+  chekins.value = result
+}
 </script>
 
 <template>
-  <h1>Welcome</h1>
-  <form class="tw-border tw-p-10">
-    <input :on-input="function(value: any) {console.log(value)}" v-model="cpf" type="text" class="tw-p-3 tw-w-80" placeholder="Digite o número do documento">
-    <button type="submit" class="tw-m-5 tw-p-3">Procurar</button> 
-  </form>
-  <pre class="tw-border tw-p-10">{{ submitMessage }}</pre>
+   <h1>Welcome</h1>
+  <aeria-input v-model="document" type="text" class="tw-w-100 tw-border tw-border-black" placeholder="Digite o número do documento"></aeria-input>
+  <aeria-button @click="searchChekins" class="tw-border tw-border-black">Procurar</aeria-button>
+  <pre class="tw-p-5 tw-border tw-border-black">{{ chekins }}</pre>
 </template>

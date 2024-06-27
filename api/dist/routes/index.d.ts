@@ -2,7 +2,7 @@ export declare const router: import("aeria").ProxiedRouter<{
     route: <const TContractWithRoles extends import("aeria").ContractWithRoles, TCallback extends (TContractWithRoles extends {
         response: infer Response;
     } ? import("aeria").InferResponse<Response> : any) extends infer Response_1 ? (context: import("aeria").RouteContext<import("aeria").RoleFromAccessCondition<TContractWithRoles["roles"]>> & {
-        request: Omit<import("aeria").GenericRequest, "payload" | "query"> & {
+        request: Omit<import("aeria").GenericRequest, "query" | "payload"> & {
             payload: TContractWithRoles extends {
                 payload: infer Payload;
             } ? import("aeria").PackReferences<import("aeria").InferProperty<Payload>> : any;
