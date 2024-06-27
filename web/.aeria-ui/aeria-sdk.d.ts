@@ -9,6 +9,81 @@ import type {
 } from '@aeriajs/types'
 
 declare type MirrorDescriptions = {
+  "checkin": {
+    "$id": "checkin",
+    "properties": {
+      "animal": {
+        "type": "array",
+        "items": {
+          "$ref": "pet",
+          "indexes": [
+            "name",
+            "age"
+          ]
+        }
+      },
+      "weight": {
+        "type": "integer"
+      },
+      "temperature": {
+        "type": "integer"
+      },
+      "type": {
+        "enum": [
+          "Routine",
+          "Emergency"
+        ]
+      },
+      "reason": {
+        "type": "string"
+      },
+      "created_at": {
+        "type": "string",
+        "format": "date-time",
+        "noForm": true,
+        "readOnly": true,
+        "isTimestamp": true
+      },
+      "updated_at": {
+        "type": "string",
+        "format": "date-time",
+        "noForm": true,
+        "readOnly": true,
+        "isTimestamp": true
+      }
+    },
+    "icon": "check-fat",
+    "presets": [
+      "crud"
+    ],
+    "indexes": [
+      "weight",
+      "temperature",
+      "type",
+      "reason"
+    ],
+    "actions": {
+      "ui:spawnAdd": {
+        "label": "action.add",
+        "icon": "plus",
+        "button": true,
+        "translate": true
+      }
+    },
+    "individualActions": {
+      "ui:spawnEdit": {
+        "label": "action.edit",
+        "icon": "pencil-simple",
+        "translate": true
+      },
+      "remove": {
+        "label": "action.remove",
+        "icon": "trash",
+        "ask": true,
+        "translate": true
+      }
+    }
+  },
   "file": {
     "$id": "file",
     "owned": "always",
@@ -86,6 +161,82 @@ declare type MirrorDescriptions = {
       }
     }
   },
+  "geolocation": {
+    "$id": "geolocation",
+    "properties": {
+      "country": {
+        "type": "string"
+      },
+      "state": {
+        "type": "string"
+      },
+      "district": {
+        "type": "string"
+      },
+      "street": {
+        "type": "string"
+      },
+      "number": {
+        "type": "integer"
+      },
+      "complement": {
+        "type": "string"
+      },
+      "zipcode": {
+        "type": "string",
+        "mask": [
+          "######-##"
+        ]
+      },
+      "created_at": {
+        "type": "string",
+        "format": "date-time",
+        "noForm": true,
+        "readOnly": true,
+        "isTimestamp": true
+      },
+      "updated_at": {
+        "type": "string",
+        "format": "date-time",
+        "noForm": true,
+        "readOnly": true,
+        "isTimestamp": true
+      }
+    },
+    "icon": "globe",
+    "presets": [
+      "crud"
+    ],
+    "indexes": [
+      "country",
+      "state",
+      "district",
+      "street",
+      "number",
+      "complement"
+    ],
+    "actions": {
+      "ui:spawnAdd": {
+        "label": "action.add",
+        "icon": "plus",
+        "button": true,
+        "translate": true
+      }
+    },
+    "individualActions": {
+      "ui:spawnEdit": {
+        "label": "action.edit",
+        "icon": "pencil-simple",
+        "translate": true
+      },
+      "remove": {
+        "label": "action.remove",
+        "icon": "trash",
+        "ask": true,
+        "translate": true
+      }
+    }
+  },
   "person": {
     "$id": "person",
     "properties": {
@@ -93,13 +244,34 @@ declare type MirrorDescriptions = {
         "type": "string"
       },
       "document": {
-        "type": "string"
+        "type": "string",
+        "mask": [
+          "###.###.###-##"
+        ]
       },
       "email": {
         "type": "string"
       },
       "phone": {
-        "type": "string"
+        "type": "string",
+        "mask": [
+          "(##) #####-####"
+        ]
+      },
+      "type": {
+        "enum": [
+          "Employees",
+          "Customers",
+          "Suppliers",
+          "Marketing"
+        ]
+      },
+      "state_registration": {
+        "type": "integer"
+      },
+      "address": {
+        "$ref": "geolocation",
+        "inline": true
       },
       "treatment": {
         "readOnly": true
@@ -125,7 +297,6 @@ declare type MirrorDescriptions = {
     ],
     "indexes": [
       "name",
-      "document",
       "email",
       "phone"
     ],
@@ -157,6 +328,20 @@ declare type MirrorDescriptions = {
       "name": {
         "type": "string"
       },
+      "owner": {
+        "type": "array",
+        "items": {
+          "$ref": "person",
+          "indexes": [
+            "name",
+            "email",
+            "phone"
+          ]
+        }
+      },
+      "age": {
+        "type": "integer"
+      },
       "type": {
         "enum": [
           "Mammal",
@@ -165,21 +350,6 @@ declare type MirrorDescriptions = {
           "Fish",
           "Invertebrate"
         ]
-      },
-      "age": {
-        "type": "string"
-      },
-      "owner": {
-        "type": "array",
-        "items": {
-          "$ref": "person",
-          "indexes": [
-            "name",
-            "document",
-            "email",
-            "phone"
-          ]
-        }
       },
       "picture": {
         "$ref": "file",
@@ -213,8 +383,7 @@ declare type MirrorDescriptions = {
     ],
     "indexes": [
       "name",
-      "age",
-      "owner"
+      "age"
     ],
     "actions": {
       "ui:spawnAdd": {
@@ -453,6 +622,38 @@ declare type MirrorDescriptions = {
 
 
 declare type MirrorRouter = {
+  "/checkin/get": {
+    "POST": {
+      "roles": [
+        "root"
+      ],
+      "builtin": true
+    }
+  },
+  "/checkin/getAll": {
+    "POST": {
+      "roles": [
+        "root"
+      ],
+      "builtin": true
+    }
+  },
+  "/checkin/insert": {
+    "POST": {
+      "roles": [
+        "root"
+      ],
+      "builtin": true
+    }
+  },
+  "/checkin/remove": {
+    "POST": {
+      "roles": [
+        "root"
+      ],
+      "builtin": true
+    }
+  },
   "/file/get": {
     "POST": {
       "roles": [
@@ -492,6 +693,38 @@ declare type MirrorRouter = {
       "builtin": true
     }
   },
+  "/geolocation/get": {
+    "POST": {
+      "roles": [
+        "root"
+      ],
+      "builtin": true
+    }
+  },
+  "/geolocation/getAll": {
+    "POST": {
+      "roles": [
+        "root"
+      ],
+      "builtin": true
+    }
+  },
+  "/geolocation/insert": {
+    "POST": {
+      "roles": [
+        "root"
+      ],
+      "builtin": true
+    }
+  },
+  "/geolocation/remove": {
+    "POST": {
+      "roles": [
+        "root"
+      ],
+      "builtin": true
+    }
+  },
   "/person/get": {
     "POST": {
       "roles": [
@@ -509,6 +742,14 @@ declare type MirrorRouter = {
     }
   },
   "/person/insert": {
+    "POST": {
+      "roles": [
+        "root"
+      ],
+      "builtin": true
+    }
+  },
+  "/person/remove": {
     "POST": {
       "roles": [
         "root"
@@ -541,6 +782,14 @@ declare type MirrorRouter = {
     }
   },
   "/pet/upload": {
+    "POST": {
+      "roles": [
+        "root"
+      ],
+      "builtin": true
+    }
+  },
+  "/pet/remove": {
     "POST": {
       "roles": [
         "root"
@@ -643,20 +892,32 @@ declare type MirrorRouter = {
   },
   "/test": {
     "GET": null
+  },
+  "/list/chekin": {
+    "GET": {
+      "payload": {
+        "type": "object",
+        "properties": {
+          "document": {
+            "type": "string"
+          }
+        }
+      }
+    }
   }
 }
 
 
 declare global {
-      type Collections = {
-        [K in keyof MirrorDescriptions]: {
-          item: SchemaWithId<MirrorDescriptions[K]>
-        }
-      }
+  type Collections = {
+    [K in keyof MirrorDescriptions]: {
+      item: SchemaWithId<MirrorDescriptions[K]>
     }
+  }
+}
 
 declare module 'aeria-sdk' {
-  import { TopLevelObject, TLOFunctions } from 'aeria-sdk'
+  import { TopLevelObject } from 'aeria-sdk'
 
   type UnionToIntersection<T> = (T extends any ? ((x: T) => 0) : never) extends ((x: infer R) => 0)
     ? R

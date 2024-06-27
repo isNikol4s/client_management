@@ -1,5 +1,6 @@
 export * from '../.aeria/out/collections/index.mjs'
 export { user, file, tempFile } from 'aeria'
+import { insert } from 'aeria'
 import { extendPersonCollection } from '../.aeria/out/index.mjs'
 
 export const person = extendPersonCollection({
@@ -12,5 +13,10 @@ export const person = extendPersonCollection({
       },
     },
   },
+  functions: {
+    insert: (payload, context) => {
+      
+    }
+  }
 })
 

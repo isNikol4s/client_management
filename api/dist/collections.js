@@ -10,6 +10,10 @@ const person = extendPersonCollection({
         }
       }
     }
+  },
+  functions: {
+    insert: (payload, context) => {
+    }
   }
 });
 export {

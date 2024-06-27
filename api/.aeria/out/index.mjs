@@ -1,3 +1,5 @@
 export * as collections from './collections/index.mjs'
+export { extendGeolocationCollection } from './collections/geolocation.mjs'
 export { extendPersonCollection } from './collections/person.mjs'
 export { extendPetCollection } from './collections/pet.mjs'
+export { extendCheckinCollection } from './collections/checkin.mjs'

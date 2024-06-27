@@ -1,17 +1,22 @@
-import { createRouter, Result } from 'aeria'
+import { createRouter, request, Result } from 'aeria'
+import { validarCPF } from '../function/script.js'
 
 export const router = createRouter()
 
 router.GET('/test', async (context) => {
-  const { error, result: people } = await context.collections.person.functions.getAll()
+  return validarCPF('122.934.036-08')
+})
 
-  if( error ) {
-    return Result.error(error)
+router.GET('/list/chekin', async (context) => {
+  return validarCPF(context.request.payload.document)
+}, {
+  payload: {
+    type: "object", 
+    properties: {
+      document: {
+        type: "string"
+      }
+    }
   }
-
-  return Result.result({
-    message: 'Hello, world!',
-    people,
-  })
 })
 

@@ -1,0 +1,5 @@
+export * as collections from './collections/index.js'
+export { extendGeolocationCollection } from './collections/geolocation.js'
+export { extendPersonCollection } from './collections/person.js'
+export { extendPetCollection } from './collections/pet.js'
+export { extendCheckinCollection } from './collections/checkin.js'

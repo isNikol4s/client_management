@@ -23,8 +23,10 @@ const options = defineOptions({
   },
   menuSchema: [
     '/dashboard/',
-    '/dashboard/pet',
+    '/dashboard/geolocation',
     '/dashboard/person',
+    '/dashboard/pet',
+    '/dashboard/checkin',
     '/dashboard/user',
   ],
 })

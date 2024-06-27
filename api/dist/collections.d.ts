@@ -10,4 +10,7 @@ export declare const person: import("aeria").ExtendCollection<import("../.aeria/
             };
         };
     };
+    readonly functions: {
+        readonly insert: (payload: any, context: import("aeria").Context<any>) => void;
+    };
 }>;

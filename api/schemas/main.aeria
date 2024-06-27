@@ -1,21 +1,54 @@
-collection Person {
-  icon "person"
+collection Geolocation {
+  icon "globe"
   indexes {
-    name
-    document
-    email
-    phone
+    country
+    state
+    district
+    street
+    number
+    complement
   }
   properties {
-    name str 
-    document str
-    email str
-    phone str
+    country str
+    state str
+    district str
+    street str
+    number int
+    complement str 
+    zipcode str @mask(["######-##"])
+  }
+  presets {
+    crud
   }
   functions {
     get @expose
     getAll @expose
     insert @expose
+    remove @expose
+  }
+}
+
+collection Person {
+  icon "person"
+  indexes {
+    name
+    email
+    phone
+  }
+  properties {
+    name str 
+    document str @mask(["###.###.###-##"])
+    email str
+    phone str @mask(["(##) #####-####"])
+    type enum @values(["Employees", "Customers", "Suppliers", "Marketing"])
+    state_registration int
+    address Geolocation @inline
+   }
+  functions {
+    get @expose
+    getAll @expose
+    insert @expose
+    remove @expose
   }
   presets {
     crud
@@ -27,13 +60,12 @@ collection Pet {
   indexes {
     name
     age
-    owner
   }
   properties {
     name str  
-    type enum @values(["Mammal", "Bird", "Reptile", "Fish", "Invertebrate"])
-    age str 
     owner []Person 
+    age int
+    type enum @values(["Mammal", "Bird", "Reptile", "Fish", "Invertebrate"])
     picture File @accept(["image/*"])
   }
   functions {
@@ -41,8 +73,35 @@ collection Pet {
     getAll @expose
     insert @expose
     upload @expose
+    remove @expose
   }
   presets {
     crud
   } 
+}
+
+collection Checkin {
+  icon "check-fat"
+  indexes {
+    weight
+    temperature
+    type
+    reason
+  }
+  properties {
+    animal []Pet
+    weight int
+    temperature int
+    type enum @values(["Routine", "Emergency"])
+    reason str
+  }
+  presets {
+    crud
+  }
+  functions {
+    get @expose
+    getAll @expose
+    insert @expose
+    remove @expose
+  }
 }

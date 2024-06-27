@@ -1,0 +1,3 @@
+const {extendCollection,defineCollection,get,getAll,insert,remove } = require("aeria")
+exports.geolocation = defineCollection({description: {$id: "geolocation",properties: {country: {type: "string"},state: {type: "string"},district: {type: "string"},street: {type: "string"},number: {type: "integer"},complement: {type: "string"},zipcode: {type: "string",mask: ["######-##"]}},icon: "globe",presets: ["crud"],indexes: ["country","state","district","street","number","complement","zipcode"]},functions: {get,getAll,insert,remove},exposedFunctions: {get: true,getAll: true,insert: true,remove: true}})
+exports.extendGeolocationCollection = (collection) => extendCollection(geolocation,collection)

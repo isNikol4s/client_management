@@ -1,0 +1,3 @@
+const {extendCollection,defineCollection,get,getAll,insert,remove } = require("aeria")
+exports.person = defineCollection({description: {$id: "person",properties: {name: {type: "string"},document: {type: "integer"},email: {type: "string"},phone: {type: "string",mask: ["(##) #####-####"]},type: {enum: ["Employees","Customers","Suppliers","Marketing"]},state_registration: {type: "integer"},address: {type: "array",items: {$ref: "geolocation"}}},icon: "person",presets: ["crud"],indexes: ["name","document","email","phone","state_registration","address"]},functions: {get,getAll,insert,remove},exposedFunctions: {get: true,getAll: true,insert: true,remove: true}})
+exports.extendPersonCollection = (collection) => extendCollection(person,collection)

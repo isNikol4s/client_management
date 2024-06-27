@@ -1,0 +1,3 @@
+const {extendCollection,defineCollection,get,getAll,insert,remove } = require("aeria")
+exports.checkin = defineCollection({description: {$id: "checkin",properties: {animal: {type: "array",items: {$ref: "pet"}},weight: {type: "integer"},temperature: {type: "integer"},type: {enum: ["Routine","Emergency"]},reason: {type: "string"}},icon: "check-fat",presets: ["crud"],indexes: ["animal","weight","temperature","type","reason"]},functions: {get,getAll,insert,remove},exposedFunctions: {get: true,getAll: true,insert: true,remove: true}})
+exports.extendCheckinCollection = (collection) => extendCollection(checkin,collection)
