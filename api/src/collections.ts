@@ -15,7 +15,7 @@ export const person = extendPersonCollection({
   },
   functions: {
     insert: (payload, context) => {
-      
+      return insert(payload, context)
     }
   }
 })

@@ -11,6 +11,6 @@ export declare const person: import("aeria").ExtendCollection<import("../.aeria/
         };
     };
     readonly functions: {
-        readonly insert: (payload: any, context: import("aeria").Context<any>) => void;
+        readonly insert: (payload: any, context: import("aeria").Context<any>) => Promise<import("aeria").InsertReturnType<import("aeria").SchemaWithId<any>>>;
     };
 }>;

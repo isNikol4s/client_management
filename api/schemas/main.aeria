@@ -42,7 +42,7 @@ collection Geolocation {
     phone str @mask(["(##) #####-####"])
     type enum @values(["Employees", "Customers", "Suppliers", "Marketing"])
     state_registration int
-    address Geolocation @inline 
+    address Geolocation
    }
   functions {
     get @expose

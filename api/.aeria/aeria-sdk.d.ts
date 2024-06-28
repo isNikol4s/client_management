@@ -271,7 +271,14 @@ declare type MirrorDescriptions = {
       },
       "address": {
         "$ref": "geolocation",
-        "inline": true
+        "indexes": [
+          "country",
+          "state",
+          "district",
+          "street",
+          "number",
+          "complement"
+        ]
       },
       "treatment": {
         "readOnly": true
