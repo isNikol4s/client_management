@@ -34,7 +34,7 @@ const searchChekins = async () => {
 </script>
 
 <template>
-   <h1>Welcome</h1>
+  <h1>welcome to the demo</h1>
   <aeria-input v-model="document" type="text" class="tw-w-100 tw-border tw-border-black" placeholder="Digite o número do documento"></aeria-input>
   <aeria-button @click="searchChekins" class="tw-border tw-border-black">Procurar</aeria-button>
   <pre class="tw-p-5 tw-border tw-border-black">{{ chekins }}</pre>

@@ -329,15 +329,12 @@ declare type MirrorDescriptions = {
         "type": "string"
       },
       "owner": {
-        "type": "array",
-        "items": {
-          "$ref": "person",
-          "indexes": [
-            "name",
-            "email",
-            "phone"
-          ]
-        }
+        "$ref": "person",
+        "indexes": [
+          "name",
+          "email",
+          "phone"
+        ]
       },
       "age": {
         "type": "integer"
@@ -889,6 +886,9 @@ declare type MirrorRouter = {
         "root"
       ]
     }
+  },
+  "/test": {
+    "GET": null
   },
   "/list/chekin": {
     "GET": {

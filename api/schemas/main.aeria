@@ -42,11 +42,11 @@ collection Geolocation {
     phone str @mask(["(##) #####-####"])
     type enum @values(["Employees", "Customers", "Suppliers", "Marketing"])
     state_registration int
-    address Geolocation @inline
+    address Geolocation @inline 
    }
   functions {
     get @expose
-    getAll @expose
+    getAll @expose  
     insert @expose
     remove @expose
   }
@@ -63,7 +63,7 @@ collection Pet {
   }
   properties {
     name str  
-    owner []Person 
+    owner Person
     age int
     type enum @values(["Mammal", "Bird", "Reptile", "Fish", "Invertebrate"])
     picture File @accept(["image/*"])
