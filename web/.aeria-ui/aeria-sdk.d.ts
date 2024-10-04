@@ -1,6 +1,6 @@
 import type {
   InferProperty,
-  InferResponse,
+  InferProperties,
   SchemaWithId,
   MakeEndpoint,
   RequestMethod,
@@ -63,18 +63,29 @@ declare type MirrorDescriptions = {
       "reason"
     ],
     "actions": {
-      "ui:spawnAdd": {
+      "spawnAdd": {
         "label": "action.add",
+        "event": "spawnAdd",
         "icon": "plus",
         "button": true,
         "translate": true
       }
     },
     "individualActions": {
-      "ui:spawnEdit": {
+      "spawnEdit": {
         "label": "action.edit",
+        "event": "spawnEdit",
         "icon": "pencil-simple",
         "translate": true
+      },
+      "viewItem": {
+        "label": "action.view",
+        "icon": "eye",
+        "translate": true,
+        "route": {
+          "name": "/dashboard/:collection/:id",
+          "setItem": true
+        }
       },
       "remove": {
         "label": "action.remove",
@@ -86,6 +97,7 @@ declare type MirrorDescriptions = {
   },
   "file": {
     "$id": "file",
+    "icon": "paperclip",
     "owned": "always",
     "presets": [
       "owned"
@@ -216,18 +228,29 @@ declare type MirrorDescriptions = {
       "complement"
     ],
     "actions": {
-      "ui:spawnAdd": {
+      "spawnAdd": {
         "label": "action.add",
+        "event": "spawnAdd",
         "icon": "plus",
         "button": true,
         "translate": true
       }
     },
     "individualActions": {
-      "ui:spawnEdit": {
+      "spawnEdit": {
         "label": "action.edit",
+        "event": "spawnEdit",
         "icon": "pencil-simple",
         "translate": true
+      },
+      "viewItem": {
+        "label": "action.view",
+        "icon": "eye",
+        "translate": true,
+        "route": {
+          "name": "/dashboard/:collection/:id",
+          "setItem": true
+        }
       },
       "remove": {
         "label": "action.remove",
@@ -308,18 +331,29 @@ declare type MirrorDescriptions = {
       "phone"
     ],
     "actions": {
-      "ui:spawnAdd": {
+      "spawnAdd": {
         "label": "action.add",
+        "event": "spawnAdd",
         "icon": "plus",
         "button": true,
         "translate": true
       }
     },
     "individualActions": {
-      "ui:spawnEdit": {
+      "spawnEdit": {
         "label": "action.edit",
+        "event": "spawnEdit",
         "icon": "pencil-simple",
         "translate": true
+      },
+      "viewItem": {
+        "label": "action.view",
+        "icon": "eye",
+        "translate": true,
+        "route": {
+          "name": "/dashboard/:collection/:id",
+          "setItem": true
+        }
       },
       "remove": {
         "label": "action.remove",
@@ -390,18 +424,29 @@ declare type MirrorDescriptions = {
       "age"
     ],
     "actions": {
-      "ui:spawnAdd": {
+      "spawnAdd": {
         "label": "action.add",
+        "event": "spawnAdd",
         "icon": "plus",
         "button": true,
         "translate": true
       }
     },
     "individualActions": {
-      "ui:spawnEdit": {
+      "spawnEdit": {
         "label": "action.edit",
+        "event": "spawnEdit",
         "icon": "pencil-simple",
         "translate": true
+      },
+      "viewItem": {
+        "label": "action.view",
+        "icon": "eye",
+        "translate": true,
+        "route": {
+          "name": "/dashboard/:collection/:id",
+          "setItem": true
+        }
       },
       "remove": {
         "label": "action.remove",
@@ -413,6 +458,8 @@ declare type MirrorDescriptions = {
   },
   "tempFile": {
     "$id": "tempFile",
+    "icon": "file",
+    "hidden": true,
     "temporary": {
       "index": "created_at",
       "expireAfterSeconds": 3600
@@ -451,6 +498,7 @@ declare type MirrorDescriptions = {
   },
   "user": {
     "$id": "user",
+    "icon": "users",
     "required": [
       "name",
       "roles",
@@ -485,7 +533,8 @@ declare type MirrorDescriptions = {
         "items": {
           "type": "string"
         },
-        "uniqueItems": true
+        "uniqueItems": true,
+        "minItems": 1
       },
       "email": {
         "type": "string",
@@ -539,7 +588,6 @@ declare type MirrorDescriptions = {
     },
     "presets": [
       "crud",
-      "view",
       "duplicate"
     ],
     "layout": {
@@ -553,21 +601,34 @@ declare type MirrorDescriptions = {
       }
     },
     "individualActions": {
-      "ui:spawnEdit": {
-        "label": "action.edit",
-        "icon": "pencil-simple",
-        "translate": true
-      },
-      "route:/dashboard/user/changepass": {
+      "changePassword": {
         "label": "change_password",
         "icon": "key",
-        "fetchItem": true,
-        "translate": true
+        "translate": true,
+        "route": {
+          "name": "/dashboard/user/changepass",
+          "fetchItem": true
+        }
       },
       "copyActivationLink": {
         "label": "copy_activation_link",
         "icon": "link",
         "translate": true
+      },
+      "spawnEdit": {
+        "label": "action.edit",
+        "event": "spawnEdit",
+        "icon": "pencil-simple",
+        "translate": true
+      },
+      "viewItem": {
+        "label": "action.view",
+        "icon": "eye",
+        "translate": true,
+        "route": {
+          "name": "/dashboard/:collection/:id",
+          "setItem": true
+        }
       },
       "remove": {
         "label": "action.remove",
@@ -575,18 +636,13 @@ declare type MirrorDescriptions = {
         "ask": true,
         "translate": true
       },
-      "ui:spawnView": {
-        "label": "action.view",
-        "icon": "magnifying-glass-plus",
-        "translate": true
-      },
-      "ui:duplicate": {
+      "duplicate": {
         "label": "action.duplicate",
+        "event": "duplicate",
         "icon": "copy",
         "translate": true
       }
     },
-    "icon": "users",
     "filters": [
       "name",
       "roles",
@@ -614,8 +670,9 @@ declare type MirrorDescriptions = {
       }
     },
     "actions": {
-      "ui:spawnAdd": {
+      "spawnAdd": {
         "label": "action.add",
+        "event": "spawnAdd",
         "icon": "plus",
         "button": true,
         "translate": true
@@ -923,7 +980,7 @@ declare global {
 declare module 'aeria-sdk' {
   import { TopLevelObject } from 'aeria-sdk'
 
-  type UnionToIntersection<T> = (T extends any ? ((x: T) => 0) : never) extends ((x: infer R) => 0)
+  type UnionToIntersection<T> = (T extends unknown ? ((x: T) => 0) : never) extends ((x: infer R) => 0)
     ? R
     : never
 
@@ -937,7 +994,7 @@ declare module 'aeria-sdk' {
           ? MakeEndpoint<
             Route,
             Method,
-            InferResponse<RouteResponse>,
+            InferProperties<RouteResponse>,
             RoutePayload extends {}
               ? InferProperty<RoutePayload>
               : undefined
@@ -952,7 +1009,7 @@ declare module 'aeria-sdk' {
   type Endpoints = {
     [Route in keyof MirrorRouter]: Route extends `/${infer Coll}/${infer Fn}`
       ? Coll extends keyof Collections
-        ? Fn extends keyof CollectionFunctionsSDK<any>
+        ? Fn extends keyof CollectionFunctionsSDK
           ? Record<Coll, Record<
               Fn, {
               POST: CollectionFunctionsSDK<SchemaWithId<MirrorDescriptions[Coll]>>[Fn]

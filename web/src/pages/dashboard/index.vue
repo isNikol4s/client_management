@@ -35,14 +35,16 @@ const searchChekins = async () => {
     return;
   }
   chekins.value = result;
+
 };
 </script>
 
 <template>
   <h1>Welcome to the Demo</h1>
-  <aeria-input v-model="document" type="text" class="tw-w-100 tw-border tw-border-black" placeholder="Digite o número do documento"></aeria-input>
+  <aeria-input v-model="document" type="text" class="tw-w-100 tw-border tw-border-black"
+    placeholder="Digite o número do documento"></aeria-input>
   <aeria-button @click="searchChekins" class="tw-border tw-border-black">Procurar</aeria-button>
-  
+
   <div v-if="chekins.length">
     <div v-for="chekin in chekins" :key="chekin._id" class="tw-border tw-p-4 tw-mt-4">
       <p><strong>ID:</strong> {{ chekin._id }}</p>
